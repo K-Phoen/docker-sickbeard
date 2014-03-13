@@ -6,8 +6,10 @@ RUN apt-get -q update
 RUN apt-get -qy --force-yes dist-upgrade
 
 RUN apt-get install -qy --force-yes python-cheetah
-
-ADD https://github.com/midgetspy/Sick-Beard/tarball/master /
+RUN apt-get install -qy --force-yes wget tar ca-certificates curl
+#RUN wget --quiet https://github.com/midgetspy/Sick-Beard/tarball/master /
+RUN curl -L  -O https://github.com/midgetspy/Sick-Beard/tarball/master
+#ADD http://github.com/midgetspy/Sick-Beard/tarball/master /
 RUN tar -xvf master -C /  && mv /midgetspy-Sick-Beard-* /sickbeard/ 
 
 VOLUME /config
