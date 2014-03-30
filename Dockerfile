@@ -2,7 +2,10 @@ FROM ubuntu:precise
 #Thanks to https://github.com/user419/docker-sickbeard and https://github.com/GeoffreyPlitt/docker-sickbeard
 MAINTAINER Tim Haak <tim@haak.co.uk>
 
+RUN locale-gen en_US en_US.UTF-8
+
 RUN apt-get -q update
+RUN apt-mark hold initscripts udev plymouth mountall
 RUN apt-get -qy --force-yes dist-upgrade
 
 RUN apt-get install -qy --force-yes python-cheetah
