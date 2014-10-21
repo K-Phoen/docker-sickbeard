@@ -8,9 +8,14 @@ RUN apt-get -qy --force-yes dist-upgrade
 RUN apt-get install -qy --force-yes python-cheetah
 RUN apt-get install -qy --force-yes wget tar ca-certificates curl
 #RUN wget --quiet https://github.com/midgetspy/Sick-Beard/tarball/master /
-RUN curl -L  -O https://github.com/midgetspy/Sick-Beard/tarball/master
-#ADD http://github.com/midgetspy/Sick-Beard/tarball/master /
-RUN tar -xvf master -C /  && mv /midgetspy-Sick-Beard-* /sickbeard/
+RUN curl -L  -O https://github.com/midgetspy/Sick-Beard/tarball/master &&\
+ tar -xvf master -C /  && mv /midgetspy-Sick-Beard-* /sickbeard/ &&\
+ rm  /midgetspy-Sick-Beard-*
+
+# apt clean
+RUN apt-get clean &&\
+  rm -rf /var/lib/apt/lists/* &&\
+  rm -rf /tmp/*
 
 VOLUME /config
 VOLUME /data
