@@ -1,7 +1,7 @@
 #! /bin/sh
 
 cd /sickbeard
-if [ -f /config/config.ini ]
+if [ -b /config/config.ini ]
 then
 	rm -rf /sickbeard/config.ini
 	rm -rf /sickbeard/sickbeard.db
@@ -14,5 +14,4 @@ fi
 ln -sf /config/config.ini /sickbeard/
 ln -sf /config/sickbeard.db /sickbeard/sickbeard.db
 #ln -sf /config/autoProcessTV.cfg sickbeard/autoprocesstv/autoProcessTV.cfg
-
 /usr/bin/python SickBeard.py
